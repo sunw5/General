@@ -1,0 +1,11 @@
+
+
+.objKey {
+  width: 200px;
+  display: inline-block;
+}
+
+.table>tbody>tr:nth-child(odd)>td,
+.table>tbody>tr:nth-child(odd)>th {
+    background-color: aliceblue; /* Choose your own color here */
+}

@@ -1,0 +1,112 @@
+<!-- <p>data-editor works!</p>
+{{ data$ | async | json }} -->
+<div class="container justify-content-center mt-5">
+  <div class="row justify-content-center">
+    <!-- <div *ngIf="data$ | async as data" class="col-4"> -->
+    <div *ngIf="data$ | async as data" class="col-4">
+      <form #dataForm="ngForm" (ngSubmit)="onSubmit(data)">
+
+        <div class=" mb-3">
+          <label for="material" class="form-label"> Material </label>
+          <input
+            type="text"
+            name="material"
+            id="material"
+            class="form-control"
+            [(ngModel)]="data.material"
+            #material="ngModel"
+            pattern="[a-űA-Ű .\-\(\)]{5,}"
+            required
+          />
+          <!-- validation solution 1 -->
+          <div [hidden]="material.valid" class="error-message">
+            Please fix the field
+          </div>
+          <!-- validation solution 2 -->
+          <!-- <div [hidden]="dataForm.controls['material']?.valid" class="error-message">
+            Please fix the field
+          </div> -->
+        </div>
+
+        <div class=" mb-3">
+          <label for="trade" class="form-label">Trade</label>
+          <input
+            pattern="[a-űA-Ű .\-\(\)]{5,}"
+            name="trade"
+            [(ngModel)]="data.trade"
+            type="text"
+            class="form-control"
+            id="trade"
+            required
+          />
+          <div
+            [hidden]="dataForm.controls['trade']?.valid"
+            class="error-message"
+          >
+            Please fix the field
+          </div>
+        </div>
+
+        <div class=" mb-3">
+          <label for="cost_code" class="form-label">Cost_code</label>
+          <input
+            pattern="[0-9a-űA-Ű .\-\(\)]{5,}"
+            name="cost_code"
+            [(ngModel)]="data.cost_code"
+            type="text"
+            class="form-control"
+            id="cost_code"
+            required
+          />
+          <div
+            [hidden]="dataForm.controls['cost_code']?.valid"
+            class="error-message"
+          >
+            Please fix the field
+          </div>
+        </div>
+
+        <div class=" mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input
+            pattern="[0-9]{1,}"
+            name="price"
+            [(ngModel)]="data.price"
+            type="text"
+            class="form-control"
+            id="price"
+            required
+          />
+          <div
+            [hidden]="dataForm.controls['price']?.valid"
+            class="error-message"
+          >
+            Please fix the field
+          </div>
+        </div>
+
+        <div class=" mb-3">
+          <label for="active" class="form-label">Active</label>
+          <input
+            pattern="^true$|^false$"
+            name="active"
+            [(ngModel)]="data.active"
+            type="text"
+            class="form-control"
+            id="active"
+            required
+          />
+          <div
+            [hidden]="dataForm.controls['active']?.valid"
+            class="error-message"
+          >
+            Please fix the field
+          </div>
+        </div>
+        <button *ngIf="data.id===0" type="submit" [disabled]="dataForm.invalid" class="btn btn-primary">New</button>
+        <button *ngIf="data.id!==0" type="submit" [disabled]="dataForm.invalid" class="btn btn-primary">Submit</button>
+        <button (click)="logger(dataForm)" type="button" class="btn btn-success">Logger</button>
+      </form>
+    </div>
+  </div>
+</div>
